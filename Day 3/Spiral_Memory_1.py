@@ -2,12 +2,6 @@ import sys
 from enum import Enum
 import math
 
-class Direction(Enum):
-    LEFT = 1
-    UP = 2
-    RIGHT = 3
-    DOWN = 0
-
 SPIRAL_MEMORY_LOCATION = int(sys.argv[1])
 
 STEPS_OUT = 0
@@ -21,28 +15,25 @@ while SPIRAL_CORNER_VALUE < SPIRAL_MEMORY_LOCATION:
     SPIRAL_CORNER_VALUE = SIDE_LENGTH * SIDE_LENGTH
     STEPS_OUT += 1
 
-PREV_SIDE_LENGTH = SIDE_LENGTH - 2
-PREV_SPIRAL_CORNER_VALUE = PREV_SIDE_LENGTH * PREV_SIDE_LENGTH
-PREV_STEPS_OUT = STEPS_OUT - 1
-print(f'The steps out of the spiral are {STEPS_OUT}')
-print(f'Side length is saved as {SIDE_LENGTH}')
+# print(f'The steps out of the spiral are {STEPS_OUT}')
+# print(f'Side length is saved as {SIDE_LENGTH}')
 
 DIFFERENCE = SPIRAL_CORNER_VALUE - SPIRAL_MEMORY_LOCATION
 
-print(f'Difference is {DIFFERENCE}')
+# print(f'Difference is {DIFFERENCE}')
 
 SIDE = math.floor(DIFFERENCE/SIDE_LENGTH)
-
+# Side length has to configure that it acts as one less since 1 less represents the addition through the spiral
 SPIRAL_ALONG_SIDE = DIFFERENCE % (SIDE_LENGTH - 1)
 
 STEPS_ALONG_SIDE = SPIRAL_ALONG_SIDE
 
-# In this case we're further back
+# In this case we're further back than the other end
 if (STEPS_ALONG_SIDE > math.floor(SIDE_LENGTH / 2)):
     STEPS_ALONG_SIDE -= math.floor(SIDE_LENGTH / 2)
 else: # elif (STEPS_ALONG_SIDE <= math.floor(SIDE_LENGTH / 2)):
     STEPS_ALONG_SIDE = math.floor(SIDE_LENGTH / 2) - STEPS_ALONG_SIDE
-
+# Add horizontal and vertical steps
 OUTPUT = STEPS_ALONG_SIDE + STEPS_OUT
 
 print(f'Number of steps to reach this output in Spiral Memory is {OUTPUT}')
