@@ -28,4 +28,4 @@ while LINE_INPUT:
         TOTAL_VALID_PASSPHRASES += 1
 
     
-print(f'The Total Valid Passphrases for (Part 1) are {TOTAL_VALID_PASSPHRASES}')
+print(f'The Total Valid Passphrases for Part 1 are {TOTAL_VALID_PASSPHRASES}')
