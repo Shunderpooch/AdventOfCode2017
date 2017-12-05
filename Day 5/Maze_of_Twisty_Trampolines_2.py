@@ -13,7 +13,10 @@ NUM_STEPS = 0
 while CURRENT_INDEX >= 0 and CURRENT_INDEX < len(JUMP_OFFSETS):
     PREV_INDEX = CURRENT_INDEX
     CURRENT_INDEX += JUMP_OFFSETS[CURRENT_INDEX]
-    JUMP_OFFSETS[PREV_INDEX] += 1
+    if JUMP_OFFSETS[PREV_INDEX] >= 3:
+        JUMP_OFFSETS[PREV_INDEX] -= 1
+    else:
+        JUMP_OFFSETS[PREV_INDEX] += 1
     NUM_STEPS += 1
 
-print(f'The number of steps to exit the maze from Part 1 are {NUM_STEPS}')
+print(f'The number of steps to exit the maze from Part 2 are {NUM_STEPS}')
