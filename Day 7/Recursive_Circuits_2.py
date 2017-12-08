@@ -25,7 +25,6 @@ def program_info(inputLine):
     removedParentheses = removedCommas.replace(')', '')
     removedParentheses = removedParentheses.replace('(', '')
     elements = removedParentheses.split()
-    print(f'{elements}')
     if (len(elements) < 3):
         return Program(elements[0], int(elements[1]), [])
     else:
@@ -49,31 +48,24 @@ for element in ProgramList:
         continue
     else:
         STARTING_ELEMENT = element
-        print(f'The name of the bottom program is {STARTING_ELEMENT}')
 
 def getProgramByName(aProgramName):
     global ProgramList
-    print(f'{aProgramName}')
     for program in ProgramList:
         if program.name == aProgramName:
-            print(f'{program}')
             return program
 
 def gatherElementFromTree(anElement):
     global ProgramList
     program = getProgramByName(anElement)
-    print(f'{program} hello')
     counter = 0 
     key = program.name
     for subElement in program.children:
-        print(subElement)
         program.setChild(counter, gatherElementFromTree(subElement))
         counter += 1
     return program 
 
 PROGRAM_TREE = gatherElementFromTree(STARTING_ELEMENT.name)
-
-print(f'Program Tree is: {PROGRAM_TREE}')
 
 def checkTreeBalance(TreeRoot):
     tempNumbers = []
@@ -100,9 +92,8 @@ def checkTreeBalance(TreeRoot):
         correct_amount = list(uniqueNums.keys())[0]
         difference = correct_amount - error_amount
         correct_weight = problem_child.weight + difference
-        print(f'The problem child is {problem_child.name}, it should be offset by {difference} to {correct_weight}')
-        print(f'{tempNumbers}')
-        print(f'')
+        print(f'The unbalanced program (Part 2) is {problem_child.name}, it should be offset by {difference} to {correct_weight}')
+        exit(0)
     return sum(tempNumbers) + baseSum
 
 checkTreeBalance(PROGRAM_TREE)
