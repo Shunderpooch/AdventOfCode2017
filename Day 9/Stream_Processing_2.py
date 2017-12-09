@@ -10,6 +10,7 @@ inGarbage = False
 isNegated = False
 additiveScore = 0
 groupDepth = 0
+garbageCount = 0
 for element in STREAM:
     if isNegated:
         isNegated = False
@@ -27,5 +28,7 @@ for element in STREAM:
             isNegated = True
         elif element == '>': # Already catching the case 
             inGarbage = False
+        else:
+            garbageCount += 1
 
-print(f'The total score for all elements in my input (Part 1) is {additiveScore}')
+print(f'The total removed characters in garbage (Part 2) is {garbageCount} characters')
