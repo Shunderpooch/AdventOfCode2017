@@ -1,5 +1,6 @@
 # Author Arthur Dooner
 # Advent of Code Day 11
+# Part 1
 
 STEPS_DICT = {}
 
