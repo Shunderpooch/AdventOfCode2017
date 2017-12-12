@@ -17,7 +17,6 @@ def getNumConnected(programNum):
     ALREADY_VISITED.append(programNum)
     for connection in PROGRAMS[programNum].connections:
         if int(connection) not in ALREADY_VISITED:
-            print(connection)
             tempNumConnected += getNumConnected(int(connection))
     return tempNumConnected
 
