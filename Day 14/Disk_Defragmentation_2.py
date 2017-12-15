@@ -1,6 +1,6 @@
 # Author Arthur Dooner
 # Advent of Code Day 14
-# Part 1
+# Part 2
 
 import sys
 
@@ -70,6 +70,9 @@ def convert_to_binary_string(byte_array):
 
 i = 0
 RESULT = 0
+HASH_ROWS = []
+NUM_GROUPS = 0
+GROUP_LIST = []
 while i < NUMBER_HASH_ROWS:
     temp_byte_array = bytearray(str.encode(f'{BASE_KNOT_HASH}-{i}'))
     # print(f'{BASE_KNOT_HASH}-{i}')
@@ -80,5 +83,33 @@ while i < NUMBER_HASH_ROWS:
         if char == "1":
             RESULT += 1
     i += 1
+    HASH_ROWS.append(row_output)
 
-print(f'The total number of squares used in the grid (Part 1) are {RESULT}')
+def check_neighbors(y, x):
+    global NUMBER_HASH_ROWS, HASH_ROWS
+    if y > 0 and HASH_ROWS[y - 1][x] == "1" and ((y - 1), x) not in GROUP_LIST:
+        GROUP_LIST.append(((y - 1), x))
+        check_neighbors((y - 1), x)
+    if y < NUMBER_HASH_ROWS - 1 and HASH_ROWS[y + 1][x] == "1" and ((y + 1), x) not in GROUP_LIST:
+        GROUP_LIST.append(((y + 1), x))
+        check_neighbors((y + 1), x)
+    if x > 0 and HASH_ROWS[y][x - 1] == "1" and (y, (x - 1)) not in GROUP_LIST:
+        GROUP_LIST.append((y, (x - 1)))
+        check_neighbors(y, (x - 1))
+    if x < NUMBER_HASH_ROWS - 1 and HASH_ROWS[y][x + 1] == "1" and (y, (x + 1)) not in GROUP_LIST:
+        GROUP_LIST.append((y, (x + 1)))
+        check_neighbors(y, (x + 1))
+            
+
+row_iterator = 0
+for row in HASH_ROWS:
+    column_iterator = 0
+    for data_loc in row:
+        if data_loc == "1" and (row_iterator, column_iterator) not in GROUP_LIST:
+            NUM_GROUPS += 1
+            check_neighbors(row_iterator, column_iterator)
+        column_iterator += 1
+    row_iterator += 1
+
+
+print(f'The total number of regions present in my keystring (Part 2) are {NUM_GROUPS}')
