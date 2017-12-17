@@ -2,7 +2,6 @@
 # Advent of Code Day 16
 # Part 1, "Permutation Promenade"
 
-DANCE_COMMANDS = []
 DANCE_ELEMENTS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p']
 def move_end_to_front(num_elements, a_list):
     # print(a_list)
@@ -34,8 +33,5 @@ with open("Dance.txt", "r") as layers:
             elif element[0] == "p":
                 loc_of_dash = element.index('/')
                 switch_places_value(element[1:loc_of_dash], element[(loc_of_dash + 1):], DANCE_ELEMENTS)
-        # if int(elements[0]) > DANCE_COMMANDS:
-        #     MAX_DEPTH = int(elements[0])
-        # FIREWALL_LAYERS[int(elements[0])] = int(elements[1])
 output = ''.join(DANCE_ELEMENTS)
 print(f'The order of the elements at the end of the dance (Part 1) are {output}')
