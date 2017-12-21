@@ -1,6 +1,6 @@
 # Author Arthur Dooner
 # Advent of Code Day 19
-# Part 1
+# Part 2
 
 ROUTING_GRID = []
 
@@ -63,11 +63,14 @@ def get_new_direction(current_loc, direction, grid):
 
 
 X_INDEX, Y_INDEX = get_starting_point(ROUTING_GRID)
-A_DIRECTION = "South"
+A_DIRECTION = "South" # Inital State
 
 VISITED_LETTERS = ""
 
+ALL_STEPS = 0
+
 while ROUTING_GRID[Y_INDEX][X_INDEX] is not " ":
+    
     if ROUTING_GRID[Y_INDEX][X_INDEX].isalpha():
         VISITED_LETTERS += ROUTING_GRID[Y_INDEX][X_INDEX]
     else:
@@ -80,5 +83,7 @@ while ROUTING_GRID[Y_INDEX][X_INDEX] is not " ":
         X_INDEX += 1
     elif A_DIRECTION == "East":
         X_INDEX -= 1
+    ALL_STEPS += 1
+    
 
-print(f"The output of visited letters in order (Part 1) is {VISITED_LETTERS}")
+print(f"The number of steps that must be taken (Part 2) is {ALL_STEPS}")
