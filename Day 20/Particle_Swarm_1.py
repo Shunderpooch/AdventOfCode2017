@@ -1,6 +1,6 @@
 # Author Arthur Dooner
 # Advent of Code Day 20
-# Part 1
+# Part 1 "Particle Swarm"
 
 import math
 
